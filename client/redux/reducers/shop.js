@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const SET_RATES = '@@SET_RATES'
-const SET_BASE = 'SET_BASE'
-const SORT_CATALOG = 'SORT_CATALOG'
+const SET_BASE = '@@SET_BASE'
+const SORT_CATALOG = '@@SORT_CATALOG'
 const SET_CATALOG = '@@SET_CATALOG'
 
 const initialState = {
@@ -60,7 +60,9 @@ export function removeFromSelection(id) {
 
 export function getRates() {
   return (dispatch) => {
-    axios.get('/api/v1/rates').then(({ data: { rates } }) => dispatch({ type: '@@SET_RATES', rates }))
+    axios
+      .get('/api/v1/rates')
+      .then(({ data: { rates } }) => dispatch({ type: '@@SET_RATES', rates }))
   }
 }
 
@@ -77,6 +79,6 @@ export function sortCatalog(sortType) {
     if (sortType === 'highest') {
       catalog.sort((a, b) => b.price - a.price)
     }
-    return dispatch({ type: 'SORT_CATALOG', products: catalog })
+    return dispatch({ type: '@@SORT_CATALOG', products: catalog })
   }
 }
