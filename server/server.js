@@ -92,6 +92,51 @@ server.post('/api/v1/logs', async (req, res) => {
       }
     ]
   }
+  if (req.body.type === 'USD') {
+    updatedLogs = [
+      ...logs,
+      {
+        time: new Date(),
+        event: `checked ${req.body.type} currency`
+      }
+    ]
+  }
+  if (req.body.type === 'CAD') {
+    updatedLogs = [
+      ...logs,
+      {
+        time: new Date(),
+        event: `checked ${req.body.type} currency`
+      }
+    ]
+  }
+  if (req.body.type === 'EUR') {
+    updatedLogs = [
+      ...logs,
+      {
+        time: new Date(),
+        event: `checked ${req.body.type} currency`
+      }
+    ]
+  }
+  if (req.body.type === 'Lowest') {
+    updatedLogs = [
+      ...logs,
+      {
+        time: new Date(),
+        event: `get sort ${req.body.type} price`
+      }
+    ]
+  }
+  if (req.body.type === 'Highest') {
+    updatedLogs = [
+      ...logs,
+      {
+        time: new Date(),
+        event: `get sort ${req.body.type} price`
+      }
+    ]
+  }
   await write('logs', updatedLogs)
   res.json({ status: 'ok' })
 })
